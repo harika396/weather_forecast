@@ -1,0 +1,4 @@
+development:
+  api_key: 172dd663294ca4762c30f99df8cb8a25
+  base_url: "http://api.openweathermap.org/data/2.5"
+  google_api_server_key: "AIzaSyCayfEXhAAMxm5EzumWpnJcMLOI_TfXm-I"

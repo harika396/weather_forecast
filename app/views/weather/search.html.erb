@@ -1,0 +1,50 @@
+<div class="jumbotron">
+  <div class="mx-auto mt-5" style="width: 400px">
+    <%= render "form", autocomplete: @autocomplete %>
+    <br/>
+
+    <% cache_key = @forecast[:postal_code].blank? ? @search_key.gsub(',','-') : @forecast[:postal_code] %>
+    <% cache(cache_key, expires_in: 30.minutes) do -%>
+      <h4><%= image_tag("http://openweathermap.org/img/w/#{@forecast[:icon]}.png", id: 'icon', width: 50) %><%= @search_key %></h4>
+
+      <dl style="margin-left:1rem;">
+
+        <dd><strong>Current Temp: </strong>
+          <%= @forecast[:current][:fahrenheit] %> | <%= @forecast[:current][:celcius] %>
+        </dd>
+        <dd><strong>Min Temp: </strong>
+          <%= @forecast[:minimum][:fahrenheit] %> | <%= @forecast[:minimum][:celcius] %> &#8595;
+        </dd>
+        <dd><strong>Max Temp: </strong>
+          <%= @forecast[:maximum][:fahrenheit] %> | <%= @forecast[:maximum][:celcius] %> &#8593;
+        </dd>
+        <br>
+
+        <dt>Extended Forecast</dt>
+        
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Day</th>
+              <th scope="col">Minimum &#8595;</th>
+              <th scope="col">Maximum &#8593;</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @forecast[:extended].each do |efc| %>
+              <tr>
+                <td><%= image_tag("http://openweathermap.org/img/w/#{efc[:icon]}.png", id: 'icon', width: 30) %></td>
+                <td><%= efc[:day] %></td>
+                <td><%= efc[:min_temp][:fahrenheit] %> | <%= efc[:min_temp][:celcius] %></td>
+                <td><%= efc[:max_temp][:fahrenheit] %> | <%= efc[:max_temp][:celcius] %></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+        
+      </dl>
+    <% end -%>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WeatherForecast</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBxAnzzt0Yt1y376dPcAUfvX3CHtT_ib1A"></script>
+  </head>
+
+  <body>
+    <%= render 'weather/nav' %>
+    <div class="container">
+      <br/>
+      <%= yield %>
+    </div>
+  </body>
+</html>
